@@ -6,141 +6,208 @@
     <meta name="description" content="EcoStudio - Cinematic Experience with Sustainable Values">
     <title>EcoStudio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: #000;
             color: #fff;
+            line-height: 1.6;
         }
-        header {
-            background-image: url('https://www.example.com/cinematic-banner.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            text-align: center;
-            color: white;
-            padding-top: 100px;
-            filter: grayscale(100%);
-        }
-        header h1 {
-            font-size: 4rem;
-            margin: 0;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
+
+        /* Sticky topbar */
         nav {
+            position: sticky;
+            top: 0;
+            background-color: #222;
+            z-index: 1000;
             display: flex;
             justify-content: center;
-            background-color: #222;
-            padding: 15px 0;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
+
         nav a {
             color: white;
             text-decoration: none;
-            padding: 15px 25px;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            padding: 12px 25px;
+            font-size: 1rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         nav a:hover {
             background-color: #fff;
             color: #000;
             border-radius: 5px;
         }
-        section {
-            padding: 50px 20px;
+
+        header {
+            background-image: url('https://www.example.com/cinematic-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 75vh;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            filter: grayscale(100%);
         }
-        .intro, .services, .contact {
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            padding: 40px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
+
         .intro h2, .services h2, .contact h2 {
             text-align: center;
-            color: #fff;
             font-size: 2rem;
+            margin-bottom: 20px;
         }
+
         .intro p, .services p, .contact p {
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-size: 1rem;
             text-align: center;
+            margin-bottom: 20px;
         }
-        .services .service-card {
-            display: inline-block;
-            width: 30%;
-            margin: 20px 1%;
-            padding: 20px;
+
+        .services {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
             background-color: #333;
+            width: 30%;
+            padding: 15px;
+            margin-bottom: 20px;
             border-radius: 8px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
-        .services .service-card img {
-            max-width: 100%;
+
+        .service-card img {
+            width: 100%;
             height: auto;
             border-radius: 5px;
             filter: grayscale(100%);
+            margin-bottom: 15px;
         }
+
         footer {
             background-color: #222;
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 15px 0;
+            margin-top: 40px;
         }
+
         footer p {
             font-size: 1rem;
             margin: 0;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .service-card {
+                width: 48%;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card {
+                width: 100%;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>EcoStudio</h1>
-    <p>Cinematic Experience with Sustainable Touch</p>
-</header>
-
+<!-- Topbar Navigation -->
 <nav>
     <a href="#intro">About</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
 </nav>
 
+<!-- Header Section -->
+<header>
+    <div>
+        <h1>EcoStudio</h1>
+        <p>Cinematic Experience with a Sustainable Touch</p>
+    </div>
+</header>
+
+<!-- About Section -->
 <section id="intro" class="intro">
     <h2>Welcome to EcoStudio</h2>
-    <p>At EcoStudio, we believe in creating cinematic experiences that captivate your imagination while staying mindful of our planet. Our passion for storytelling blends seamlessly with our commitment to sustainability. We create powerful visuals, immersive sound, and meaningful narratives, all with eco-friendly practices at our core.</p>
+    <p>At EcoStudio, we create visually captivating, eco-friendly cinematic experiences. Our storytelling blends sustainability with creativity, ensuring every frame contributes to a better planet.</p>
 </section>
 
+<!-- Services Section -->
 <section id="services" class="services">
     <h2>Our Services</h2>
     <div class="service-card">
         <img src="https://www.example.com/film-production.jpg" alt="Film Production">
         <h3>Film Production</h3>
-        <p>Eco-friendly production that reduces waste while delivering high-quality cinematic content.</p>
+        <p>We offer eco-friendly production techniques that reduce waste while creating powerful cinematic content.</p>
     </div>
     <div class="service-card">
         <img src="https://www.example.com/cinematography.jpg" alt="Cinematography">
         <h3>Cinematography</h3>
-        <p>Stunning visuals captured with cutting-edge, eco-conscious techniques.</p>
+        <p>High-quality cinematography with sustainability in mind, using green filming methods.</p>
     </div>
     <div class="service-card">
         <img src="https://www.example.com/green-screen.jpg" alt="Post-production">
         <h3>Post-Production</h3>
-        <p>Innovative editing and effects with minimal environmental impact.</p>
+        <p>Our post-production processes focus on minimal environmental impact, delivering exceptional results.</p>
     </div>
 </section>
 
+<!-- Contact Section -->
 <section id="contact" class="contact">
     <h2>Contact Us</h2>
-    <p>Get in touch with EcoStudio to learn more about our services or start your project today!</p>
     <p>Email: info@ecostudio.com</p>
     <p>Phone: (123) 456-7890</p>
     <p>Address: 123 Green Street, Eco City, EC 12345</p>
 </section>
 
+<!-- Footer -->
 <footer>
     <p>&copy; 2025 EcoStudio. All Rights Reserved.</p>
 </footer>
