@@ -27,6 +27,7 @@
             z-index: 1000;
             display: flex;
             justify-content: center;
+            gap: 20px;
             padding: 14px 0;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
         }
@@ -34,7 +35,6 @@
         nav a {
             color: white;
             text-decoration: none;
-            padding: 12px 24px;
             font-size: 1rem;
             text-transform: uppercase;
             transition: all 0.3s;
@@ -42,48 +42,40 @@
         }
 
         nav a:hover {
-            background-color: #0f0f0f;
             color: #00ff88;
         }
 
         header {
-            background: url('https://wallpapers.com/images/hd/pure-black-background-py9pa0f1mlsscm9s.jpg') no-repeat center center/cover;
-            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            height: 60vh;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('https://wallpapers.com/images/hd/pure-black-background-py9pa0f1mlsscm9s.jpg') no-repeat center center/cover;
         }
 
         header h1 {
-            font-size: 3.8rem;
-            text-shadow: 3px 3px 8px rgba(0, 255, 136, 0.5);
-        }
-
-        header p {
-            font-size: 1.3rem;
-            margin-top: 10px;
-            opacity: 0.9;
+            font-size: 3rem;
+            color: #00ff88;
         }
 
         section {
-            padding: 60px 20px;
             max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
+            padding: 60px 20px;
         }
 
-        .services {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .service-card {
             background-color: #222;
-            width: 30%;
             padding: 20px;
             border-radius: 10px;
+            text-align: center;
             box-shadow: 0 6px 15px rgba(0, 255, 136, 0.3);
             transition: transform 0.3s;
         }
@@ -95,34 +87,17 @@
         .service-card img {
             width: 100%;
             border-radius: 5px;
-            margin-bottom: 15px;
         }
 
         footer {
             background-color: #111;
-            color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
         }
 
         @media (max-width: 768px) {
-            .service-card {
-                width: 48%;
-            }
-
-            header h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .service-card {
-                width: 100%;
-            }
-
-            header h1 {
-                font-size: 2.5rem;
+            .grid-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -147,22 +122,24 @@
     <p>We craft visually stunning, eco-friendly cinematic experiences, blending creativity with sustainability.</p>
 </section>
 
-<section id="services" class="services">
+<section id="services">
     <h2>Our Services</h2>
-    <div class="service-card">
-        <img src="https://support.musicgateway.com/wp-content/uploads/2021/04/stages-of-film-production.png" alt="Film Production">
-        <h3>Film Production</h3>
-        <p>Eco-friendly production techniques ensuring sustainability in filmmaking.</p>
-    </div>
-    <div class="service-card">
-        <img src="https://morningannouncement.com/wp-content/uploads/2016/11/Fotolia_47323206_Subscription_Monthly_M.jpg" alt="Cinematography">
-        <h3>Cinematography</h3>
-        <p>High-quality green filming techniques that reduce environmental impact.</p>
-    </div>
-    <div class="service-card">
-        <img src="https://assets-global.website-files.com/5fa0baa5ea5c262586cf8fd0/609423448f31998de22c5c56_Post%20Production%20Workflow%20-%20Feature%20Image%20-%20Wrapbook.jpg" alt="Post-production">
-        <h3>Post-Production</h3>
-        <p>Eco-conscious editing and finishing for visually stunning results.</p>
+    <div class="grid-container">
+        <div class="service-card">
+            <img src="https://support.musicgateway.com/wp-content/uploads/2021/04/stages-of-film-production.png" alt="Film Production">
+            <h3>Film Production</h3>
+            <p>Eco-friendly production techniques ensuring sustainability in filmmaking.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://morningannouncement.com/wp-content/uploads/2016/11/Fotolia_47323206_Subscription_Monthly_M.jpg" alt="Cinematography">
+            <h3>Cinematography</h3>
+            <p>High-quality green filming techniques that reduce environmental impact.</p>
+        </div>
+        <div class="service-card">
+            <img src="https://assets-global.website-files.com/5fa0baa5ea5c262586cf8fd0/609423448f31998de22c5c56_Post%20Production%20Workflow%20-%20Feature%20Image%20-%20Wrapbook.jpg" alt="Post-production">
+            <h3>Post-Production</h3>
+            <p>Eco-conscious editing and finishing for visually stunning results.</p>
+        </div>
     </div>
 </section>
 
