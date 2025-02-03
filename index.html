@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EcoStudio - Cinematic Experience with Sustainable Values">
     <title>EcoStudio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -13,81 +14,63 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #000;
             color: #fff;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* Sticky topbar */
         nav {
             position: sticky;
             top: 0;
-            background-color: #222;
+            background-color: rgba(34, 34, 34, 0.9);
             z-index: 1000;
             display: flex;
             justify-content: center;
-            padding: 12px 0;
+            padding: 14px 0;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 14px 28px;
-            font-size: 1.1rem;
+            padding: 12px 24px;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #fff;
-            color: #000;
+            transition: all 0.3s;
             border-radius: 5px;
         }
 
+        nav a:hover {
+            background-color: #0f0f0f;
+            color: #00ff88;
+        }
+
         header {
-            background-image: url('https://wallpapers.com/images/hd/pure-black-background-py9pa0f1mlsscm9s.jpg');
-            background-size: cover;
-            background-position: center;
-            height: 75vh;
-            color: white;
+            background: url('https://wallpapers.com/images/hd/pure-black-background-py9pa0f1mlsscm9s.jpg') no-repeat center center/cover;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            filter: grayscale(100%);
         }
 
         header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-size: 3.8rem;
+            text-shadow: 3px 3px 8px rgba(0, 255, 136, 0.5);
         }
 
         header p {
-            font-size: 1.2rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-size: 1.3rem;
+            margin-top: 10px;
+            opacity: 0.9;
         }
 
         section {
-            padding: 40px 20px;
-            max-width: 1200px;
+            padding: 60px 20px;
+            max-width: 1100px;
             margin: 0 auto;
-        }
-
-        .intro h2, .services h2, .contact h2 {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .intro p, .services p, .contact p {
-            font-size: 1.1rem;
-            text-align: center;
-            margin-bottom: 25px;
         }
 
         .services {
@@ -97,48 +80,39 @@
         }
 
         .service-card {
-            background-color: #333;
+            background-color: #222;
             width: 30%;
             padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 255, 136, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
         }
 
         .service-card img {
             width: 100%;
-            height: auto;
             border-radius: 5px;
-            filter: grayscale(100%);
             margin-bottom: 15px;
         }
 
         footer {
-            background-color: #222;
+            background-color: #111;
             color: white;
             text-align: center;
-            padding: 15px 0;
+            padding: 20px;
             margin-top: 40px;
         }
 
-        footer p {
-            font-size: 1rem;
-            margin: 0;
-        }
-
-        /* Mobile responsiveness */
         @media (max-width: 768px) {
             .service-card {
                 width: 48%;
             }
 
             header h1 {
-                font-size: 2.8rem;
-            }
-
-            nav a {
-                font-size: 0.9rem;
+                font-size: 3rem;
             }
         }
 
@@ -148,25 +122,19 @@
             }
 
             header h1 {
-                font-size: 2.3rem;
-            }
-
-            nav a {
-                font-size: 0.8rem;
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Topbar Navigation -->
 <nav>
     <a href="#intro">About</a>
     <a href="#services">Services</a>
     <a href="#contact">Contact</a>
 </nav>
 
-<!-- Header Section -->
 <header>
     <div>
         <h1>EcoStudio</h1>
@@ -174,40 +142,36 @@
     </div>
 </header>
 
-<!-- About Section -->
-<section id="intro" class="intro">
+<section id="intro">
     <h2>Welcome to EcoStudio</h2>
-    <p>At EcoStudio, we create visually captivating, eco-friendly cinematic experiences. Our storytelling blends sustainability with creativity, ensuring every frame contributes to a better planet.</p>
+    <p>We craft visually stunning, eco-friendly cinematic experiences, blending creativity with sustainability.</p>
 </section>
 
-<!-- Services Section -->
 <section id="services" class="services">
     <h2>Our Services</h2>
     <div class="service-card">
-        <img src="https://support.musicgateway.com/wp-content/uploads/2021/04/stages-of-film-production.png">
+        <img src="https://support.musicgateway.com/wp-content/uploads/2021/04/stages-of-film-production.png" alt="Film Production">
         <h3>Film Production</h3>
-        <p>We offer eco-friendly production techniques that reduce waste while creating powerful cinematic content.</p>
+        <p>Eco-friendly production techniques ensuring sustainability in filmmaking.</p>
     </div>
     <div class="service-card">
-        <img src="https://morningannouncement.com/wp-content/uploads/2016/11/Fotolia_47323206_Subscription_Monthly_M.jpg">
+        <img src="https://morningannouncement.com/wp-content/uploads/2016/11/Fotolia_47323206_Subscription_Monthly_M.jpg" alt="Cinematography">
         <h3>Cinematography</h3>
-        <p>High-quality cinematography with sustainability in mind, using green filming methods.</p>
+        <p>High-quality green filming techniques that reduce environmental impact.</p>
     </div>
     <div class="service-card">
         <img src="https://assets-global.website-files.com/5fa0baa5ea5c262586cf8fd0/609423448f31998de22c5c56_Post%20Production%20Workflow%20-%20Feature%20Image%20-%20Wrapbook.jpg" alt="Post-production">
         <h3>Post-Production</h3>
-        <p>Our post-production processes focus on minimal environmental impact, delivering exceptional results.</p>
+        <p>Eco-conscious editing and finishing for visually stunning results.</p>
     </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact">
+<section id="contact">
     <h2>Contact Us</h2>
-    <p>For inquiries or collaborations, feel free to reach out:</p>
-    <p><strong>Email:</strong> <a href="mailto:fmaster1141@gmail.com" style="color: #fff; text-decoration: none;">fmaster1141@gmail.com</a></p>
+    <p>Have a project in mind? Let’s collaborate.</p>
+    <p><strong>Email:</strong> <a href="mailto:fmaster1141@gmail.com" style="color: #00ff88; text-decoration: none;">fmaster1141@gmail.com</a></p>
 </section>
 
-<!-- Footer -->
 <footer>
     <p>&copy; 2025 EcoStudio. All Rights Reserved.</p>
 </footer>
