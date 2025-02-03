@@ -89,6 +89,31 @@
             border-radius: 5px;
         }
 
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            padding: 10px;
+            background-color: #00ff88;
+            border: none;
+            color: #000;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
         footer {
             background-color: #111;
             text-align: center;
@@ -145,8 +170,12 @@
 
 <section id="contact">
     <h2>Contact Us</h2>
-    <p>Have a project in mind? Let’s collaborate.</p>
-    <p><strong>Email:</strong> <a href="mailto:fmaster1141@gmail.com" style="color: #00ff88; text-decoration: none;">fmaster1141@gmail.com</a></p>
+    <form class="contact-form" action="mailto:fmaster1141@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
 </section>
 
 <footer>
