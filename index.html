@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Pictures | Visionary Cinema</title>
+    <title>EcoStudios | Sustainable Storytelling</title>
     <style>
-        /* --- RESET & BASIC STYLES --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #050505;
-            color: #f0f0f0;
-            line-height: 1.6;
+        /* --- THEME SETTINGS --- */
+        :root {
+            --primary-bg: #0f1c15;      /* Deep Forest Green */
+            --secondary-bg: #1a2f23;    /* Lighter Green for cards */
+            --accent: #4caf50;          /* Bright Leaf Green */
+            --text-main: #f0f0f0;
+            --text-muted: #a0b3a6;
         }
-        a { text-decoration: none; color: white; transition: 0.3s; }
-        ul { list-style: none; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
 
         /* --- NAVIGATION --- */
         nav {
@@ -22,20 +30,64 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
-            position: absolute;
-            width: 100%;
+            background-color: rgba(15, 28, 21, 0.95);
+            border-bottom: 1px solid #2c4a3b;
+            position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
         }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
-        .logo span { color: #e50914; } /* Red accent color */
-        .nav-links li { display: inline-block; margin-left: 30px; }
-        .nav-links a:hover { color: #e50914; }
 
-        /* --- HERO SECTION --- */
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+            color: white; 
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span { color: var(--accent); margin-right: 5px; }
+
+        .nav-tabs button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-left: 30px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: 0.3s;
+            padding-bottom: 5px;
+        }
+
+        .nav-tabs button:hover, .nav-tabs button.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* --- TAB LOGIC --- */
+        /* This hides all tabs by default */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+            min-height: 80vh;
+        }
+        /* This shows the active tab */
+        .tab-content.active-view {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HOME TAB (HERO) --- */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2525&auto=format&fit=crop');
+            height: 85vh;
+            background: linear-gradient(rgba(15,28,21,0.6), var(--primary-bg)), url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=2664&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -43,121 +95,235 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 20px;
         }
-        .hero h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; opacity: 0.9; }
+        .hero h1 { font-size: 4rem; margin-bottom: 20px; line-height: 1.1; }
+        .hero span { color: var(--accent); }
+        .hero p { font-size: 1.3rem; max-width: 700px; color: var(--text-muted); margin-bottom: 40px; }
         
-        .btn {
+        .cta-btn {
             padding: 15px 40px;
-            border: 2px solid white;
-            color: white;
+            background-color: var(--accent);
+            color: #000;
             font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
-        .btn:hover { background-color: white; color: black; }
+        .cta-btn:hover { transform: scale(1.05); background-color: #66bb6a; }
 
-        /* --- PROJECT SLATE (Grid) --- */
-        .slate { padding: 80px 50px; }
-        .section-title { font-size: 2rem; margin-bottom: 40px; border-left: 4px solid #e50914; padding-left: 15px; }
+        /* --- FILMS TAB --- */
+        .container { padding: 60px 50px; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 40px; border-left: 5px solid var(--accent); padding-left: 20px; }
         
-        .movie-grid {
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
-        .movie-card {
-            background: #111;
-            height: 450px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .movie-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.7; }
-        .movie-card:hover img { transform: scale(1.05); opacity: 0.4; }
         
-        .card-info {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            opacity: 0; 
-            transition: 0.5s;
+        .card {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s;
         }
-        .movie-card:hover .card-info { opacity: 1; bottom: 30px; }
-        .movie-tag { color: #e50914; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
-        .movie-title { font-size: 1.5rem; font-weight: bold; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .card img { width: 100%; height: 400px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card h3 { margin-bottom: 10px; font-size: 1.4rem; }
+        .meta { color: var(--accent); font-size: 0.9rem; font-weight: bold; margin-bottom: 10px; display: block; }
 
-        /* --- FOOTER --- */
-        footer { padding: 50px; background: #000; text-align: center; border-top: 1px solid #222; }
-        .socials { margin-bottom: 20px; }
-        .socials a { margin: 0 10px; color: #777; }
-        .copyright { color: #555; font-size: 0.8rem; }
+        /* --- SUSTAINABILITY TAB --- */
+        .eco-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-box {
+            text-align: center;
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 10px;
+            border: 1px solid #2c4a3b;
+        }
+        .stat-number { font-size: 3rem; color: var(--accent); font-weight: bold; display: block; }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- CONTACT TAB --- */
+        .contact-wrapper {
+            display: flex;
+            gap: 50px;
+            background: var(--secondary-bg);
+            padding: 50px;
+            border-radius: 15px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--text-muted); }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: #0f1c15;
+            border: 1px solid #2c4a3b;
+            color: white;
+            border-radius: 5px;
+        }
+        .contact-info h3 { margin-bottom: 20px; color: var(--accent); }
+
+        /* MOBILE */
         @media (max-width: 768px) {
+            nav { flex-direction: column; padding: 20px; }
+            .nav-tabs { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; }
+            .nav-tabs button { margin: 5px 10px; }
             .hero h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; }
-            .nav-links { margin-top: 20px; }
-            .nav-links li { margin: 0 10px; }
+            .contact-wrapper { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">LUMINA <span>PICTURES</span></div>
-        <ul class="nav-links">
-            <li><a href="#">The Slate</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+        <div class="logo">
+            <span>♻</span> EcoStudios
+        </div>
+        <div class="nav-tabs">
+            <button class="tab-link active" onclick="openTab('home', this)">Home</button>
+            <button class="tab-link" onclick="openTab('films', this)">Our Slate</button>
+            <button class="tab-link" onclick="openTab('mission', this)">Green Mission</button>
+            <button class="tab-link" onclick="openTab('contact', this)">Contact</button>
+        </div>
     </nav>
 
-    <header class="hero">
-        <h1>Stories That Echo</h1>
-        <p>Independent spirit. Global vision. Producing the next generation of feature films and documentaries.</p>
-        <br>
-        <a href="#" class="btn">Watch 2025 Sizzle Reel</a>
-    </header>
+    <div id="home" class="tab-content active-view">
+        <header class="hero">
+            <h1>Cinema for a <br><span>Living Planet</span></h1>
+            <p>EcoStudios is the world's first carbon-negative production house. We craft blockbusters without leaving a footprint.</p>
+            <button class="cta-btn" onclick="openTab('films', document.querySelectorAll('.tab-link')[1])">View Our Projects</button>
+        </header>
+    </div>
 
-    <section class="slate">
-        <h2 class="section-title">Current Productions</h2>
-        <div class="movie-grid">
-            <div class="movie-card">
-                <img src="https://images.unsplash.com/photo-1596727147705-54a9d099308a?q=80&w=1000&auto=format&fit=crop" alt="Sci-Fi Movie">
-                <div class="card-info">
-                    <span class="movie-tag">In Post-Production</span>
-                    <h3 class="movie-title">The Neon Horizon</h3>
+    <div id="films" class="tab-content">
+        <div class="container">
+            <h2 class="section-header">Current Productions</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop" alt="Forest Movie">
+                    <div class="card-body">
+                        <span class="meta">DOCUMENTARY | 2025</span>
+                        <h3>Canopy of Giants</h3>
+                        <p>A breathtaking journey into the Amazon's untouched heart.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="movie-card">
-                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e63?q=80&w=1000&auto=format&fit=crop" alt="Drama Movie">
-                <div class="card-info">
-                    <span class="movie-tag">Now Streaming</span>
-                    <h3 class="movie-title">Silence in the Valley</h3>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1615809710928-11158a17684d?q=80&w=1000&auto=format&fit=crop" alt="Sci Fi Movie">
+                    <div class="card-body">
+                        <span class="meta">SCI-FI THRILLER | IN PRODUCTION</span>
+                        <h3>Solar Punk 2099</h3>
+                        <p>In a world rebuilt by nature, one engineer uncovers a digital secret.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="movie-card">
-                <img src="https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?q=80&w=1000&auto=format&fit=crop" alt="Action Movie">
-                <div class="card-info">
-                    <span class="movie-tag">Pre-Production</span>
-                    <h3 class="movie-title">Project: Overdrive</h3>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop" alt="Space Movie">
+                    <div class="card-body">
+                        <span class="meta">DRAMA | POST-PRODUCTION</span>
+                        <h3>The Last Glacial</h3>
+                        <p>A survival story set against the backdrop of the melting arctic.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="socials">
-            <a href="#">Instagram</a>
-            <a href="#">Vimeo</a>
-            <a href="#">IMDb Pro</a>
-            <a href="#">LinkedIn</a>
+    <div id="mission" class="tab-content">
+        <div class="container">
+            <h2 class="section-header">Zero Waste Production</h2>
+            <p style="font-size: 1.2rem; max-width: 800px;">
+                Traditional filmmaking generates massive waste. EcoStudios does it differently. 
+                We use 100% solar-powered sets, digital scripts, and recycled props.
+            </p>
+
+            <div class="eco-stats">
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <p>Solar Powered Sets</p>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">0</span>
+                    <p>Diesel Generators Used</p>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">50k</span>
+                    <p>Trees Planted This Year</p>
+                </div>
+            </div>
         </div>
-        <p class="copyright">&copy; 2025 Lumina Pictures LLC. All Rights Reserved.</p>
-    </footer>
+    </div>
+
+    <div id="contact" class="tab-content">
+        <div class="container">
+            <h2 class="section-header">Get in Touch</h2>
+            <div class="contact-wrapper">
+                <div style="flex: 1;">
+                    <form>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label>Inquiry Type</label>
+                            <input type="text" placeholder="Distribution, Press, or Script?">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="5" placeholder="Tell us your story..."></textarea>
+                        </div>
+                        <button type="button" class="cta-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info" style="flex: 1;">
+                    <h3>Headquarters</h3>
+                    <p>101 Green Valley Blvd<br>Portland, OR, 97205</p>
+                    <br>
+                    <h3>Press Inquiries</h3>
+                    <p>press@ecostudios.com</p>
+                    <br>
+                    <h3>Script Submissions</h3>
+                    <p>NOTE: We only accept scripts with themes centered around nature, climate, or conservation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName, btnElement) {
+            // 1. Hide all tab contents
+            var contents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active-view");
+            }
+
+            // 2. Remove 'active' class from all buttons
+            var buttons = document.getElementsByClassName("tab-link");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            // 3. Show the specific tab clicked
+            document.getElementById(tabName).classList.add("active-view");
+
+            // 4. Highlight the button clicked
+            btnElement.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
