@@ -5,14 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoStudios | Official Site</title>
     <style>
-        /* --- MAIN SETTINGS --- */
+        /* --- DESIGN THEME --- */
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ffffff;
+            --secondary: #1a1a1a;
+            --text-gray: #b0b0b0;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000000; /* Black background */
-            color: #ffffff;            /* White text */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: white;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* --- NAVIGATION --- */
@@ -20,179 +29,240 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: #111111;
-            border-bottom: 1px solid #333;
-            position: sticky;
+            padding: 25px 8%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 10;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+        .logo { 
+            font-size: 1.2rem; 
+            font-weight: 800; 
+            letter-spacing: 4px; 
+            text-transform: uppercase;
+        }
 
         .nav-links button {
             background: none;
             border: none;
-            color: #888;
-            margin-left: 20px;
+            color: var(--text-gray);
+            margin-left: 30px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
-        }
-
-        .nav-links button.active, .nav-links button:hover {
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        /* --- TABS SYSTEM --- */
-        .tab-content {
-            display: none; /* Hide pages by default */
-            padding: 100px 5%;
-            text-align: center;
-            min-height: 80vh;
-        }
-
-        .active-tab {
-            display: block; /* Show the active page */
-        }
-
-        /* --- HOME PAGE --- */
-        #home {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1478720568477-152d9b164e63?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .since-date {
-            font-size: 14px;
-            color: #aaa;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        h1 { font-size: 50px; margin-bottom: 20px; }
-        
-        /* --- PROJECTS PAGE --- */
-        .status-box {
-            border: 1px solid #444;
-            padding: 40px;
-            display: inline-block;
-            margin-top: 50px;
-        }
-
-        /* --- CONTACT PAGE --- */
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            text-align: left;
-        }
-
-        .contact-box { margin: 20px; min-width: 250px; }
-
-        .social-link {
-            display: block;
-            background: #222;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
-        .social-link:hover { background: #444; }
+        .nav-links button:hover, .nav-links button.active {
+            color: var(--accent);
+        }
+
+        /* --- PAGES (TABS) --- */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-page { display: block; }
+
+        /* --- HOME DESIGN --- */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .since-tag {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--text-gray);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        #home h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        #home p {
+            color: var(--text-gray);
+            max-width: 500px;
+            font-size: 1.1rem;
+        }
+
+        /* --- PROJECTS DESIGN --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .empty-slate {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 80px 40px;
+            border-radius: 4px;
+            margin-top: 40px;
+        }
+
+        /* --- CONTACT & SOCIALS --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            text-align: left;
+            margin-top: 50px;
+        }
+
+        .social-card {
+            background: var(--secondary);
+            padding: 30px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .social-card:hover {
+            border-color: var(--accent);
+            background: #222;
+        }
 
         input, textarea {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background: #222;
-            border: 1px solid #444;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
             color: white;
+            border-radius: 4px;
         }
 
-        button.send-btn {
+        .submit-btn {
             background: white;
             color: black;
             border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
+            padding: 15px 30px;
+            font-weight: 700;
+            text-transform: uppercase;
             cursor: pointer;
-            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover { background: #ccc; }
+
+        /* --- MOBILE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            nav { padding: 20px; flex-direction: column; }
+            .nav-links { margin-top: 15px; }
+            .nav-links button { margin: 0 10px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">ECOSTUDIOS</div>
+        <div class="logo">EcoStudios</div>
         <div class="nav-links">
-            <button onclick="showPage('home')" id="btn-home" class="active">Home</button>
-            <button onclick="showPage('projects')" id="btn-projects">Projects</button>
-            <button onclick="showPage('contact')" id="btn-contact">Contact</button>
+            <button onclick="switchTab('home')" id="nav-home" class="active">Studio</button>
+            <button onclick="switchTab('projects')" id="nav-projects">Slate</button>
+            <button onclick="switchTab('contact')" id="nav-contact">Connect</button>
         </div>
     </nav>
 
-    <div id="home" class="tab-content active-tab">
-        <p class="since-date">SINCE JUNE 6TH 2024</p>
+    <section id="home" class="page active-page">
+        <div class="since-tag">Since June 6th 2024</div>
         <h1>EcoStudios</h1>
-        <p>A professional movie studio focused on high-quality visual production.</p>
-    </div>
+        <p>Premium visual storytelling and film production.</p>
+    </section>
 
-    <div id="projects" class="tab-content">
-        <h2>The Slate</h2>
-        <div class="status-box">
-            <h3>Current Status: In Development</h3>
-            <p style="color: #888; margin-top: 10px;">We are currently working on our upcoming projects behind the scenes.<br>Check back soon for official announcements.</p>
-        </div>
-    </div>
-
-    <div id="contact" class="tab-content">
-        <h2>Contact Us</h2>
-        <div class="contact-container">
-            <div class="contact-box">
-                <h3>Follow Us</h3>
-                <br>
-                <a href="https://www.youtube.com/@ecostudiosofficial" target="_blank" class="social-link">YouTube</a>
-                <a href="https://www.instagram.com/ecostudiosofficial/" target="_blank" class="social-link">Instagram</a>
-            </div>
-
-            <div class="contact-box">
-                <h3>Send an Inquiry</h3>
-                <form>
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
-                    <textarea placeholder="Your Message" rows="4"></textarea>
-                    <button type="button" class="send-btn">Send Message</button>
-                </form>
+    <section id="projects" class="page">
+        <div class="container">
+            <h2 style="font-size: 2.5rem;">The Slate</h2>
+            <div class="empty-slate">
+                <h3 style="margin-bottom: 10px;">In Development</h3>
+                <p style="color: var(--text-gray);">Our current projects are strictly confidential.<br>Check back later for trailers and announcements.</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="contact" class="page">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 10px;">Contact</h2>
+            <p style="color: var(--text-gray);">For all business and press inquiries.</p>
+
+            <div class="contact-grid">
+                <div>
+                    <a href="https://www.youtube.com/@ecostudiosofficial" target="_blank" class="social-link">
+                        <div class="social-card">
+                            <span>YouTube</span>
+                            <span>→</span>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/ecostudiosofficial/" target="_blank" class="social-link">
+                        <div class="social-card">
+                            <span>Instagram</span>
+                            <span>→</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div>
+                    <form>
+                        <input type="text" placeholder="Full Name">
+                        <input type="email" placeholder="Email Address">
+                        <textarea rows="4" placeholder="Message"></textarea>
+                        <button type="button" class="submit-btn">Send Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
-        // This function switches between the pages
-        function showPage(pageId) {
-            // 1. Hide all pages
-            var pages = document.getElementsByClassName('tab-content');
-            for (var i = 0; i < pages.length; i++) {
-                pages[i].classList.remove('active-tab');
-            }
+        function switchTab(tabId) {
+            // Remove active class from all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active-page'));
 
-            // 2. Show the page you clicked
-            document.getElementById(pageId).classList.add('active-tab');
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-links button');
+            buttons.forEach(b => b.classList.remove('active'));
 
-            // 3. Make the nav buttons look active/inactive
-            var buttons = document.querySelectorAll('.nav-links button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + pageId).classList.add('active');
+            // Add active class to selected
+            document.getElementById(tabId).classList.add('active-page');
+            document.getElementById('nav-' + tabId).classList.add('active');
+
+            // Scroll to top when switching
+            window.scrollTo(0,0);
         }
     </script>
 
