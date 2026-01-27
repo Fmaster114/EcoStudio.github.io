@@ -3,154 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EcoStudio - Cinematic Experience with Sustainable Values">
-    <title>EcoStudio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Lumina Pictures | Visionary Cinema</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* --- RESET & BASIC STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #000;
-            color: #fff;
-            line-height: 1.8;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #050505;
+            color: #f0f0f0;
+            line-height: 1.6;
         }
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; }
 
+        /* --- NAVIGATION --- */
         nav {
-            position: sticky;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: absolute;
+            width: 100%;
             top: 0;
-            background-color: rgba(34, 34, 34, 0.9);
-            z-index: 1000;
+            z-index: 10;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #fff; }
+        .logo span { color: #e50914; } /* Red accent color */
+        .nav-links li { display: inline-block; margin-left: 30px; }
+        .nav-links a:hover { color: #e50914; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2525&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 14px 0;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            border-radius: 5px;
-        }
-
-        nav a:hover {
-            color: #00ff88;
-        }
-
-        header {
-            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            height: 60vh;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('https://wallpapers.com/images/hd/pure-black-background-py9pa0f1mlsscm9s.jpg') no-repeat center center/cover;
+            padding: 0 20px;
         }
-
-        header h1 {
-            font-size: 3rem;
-            color: #00ff88;
+        .hero h1 { font-size: 4rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; opacity: 0.9; }
+        
+        .btn {
+            padding: 15px 40px;
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
+        .btn:hover { background-color: white; color: black; }
 
-        section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .grid-container {
+        /* --- PROJECT SLATE (Grid) --- */
+        .slate { padding: 80px 50px; }
+        .section-title { font-size: 2rem; margin-bottom: 40px; border-left: 4px solid #e50914; padding-left: 15px; }
+        
+        .movie-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-
-        .service-card {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 6px 15px rgba(0, 255, 136, 0.3);
-            transition: transform 0.3s;
+        .movie-card {
+            background: #111;
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
-
-        .service-card:hover {
-            transform: scale(1.05);
+        .movie-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.7; }
+        .movie-card:hover img { transform: scale(1.05); opacity: 0.4; }
+        
+        .card-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            opacity: 0; 
+            transition: 0.5s;
         }
+        .movie-card:hover .card-info { opacity: 1; bottom: 30px; }
+        .movie-tag { color: #e50914; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+        .movie-title { font-size: 1.5rem; font-weight: bold; }
 
-        .service-card img {
-            width: 100%;
-            border-radius: 5px;
-        }
+        /* --- FOOTER --- */
+        footer { padding: 50px; background: #000; text-align: center; border-top: 1px solid #222; }
+        .socials { margin-bottom: 20px; }
+        .socials a { margin: 0 10px; color: #777; }
+        .copyright { color: #555; font-size: 0.8rem; }
 
-        footer {
-            background-color: #111;
-            text-align: center;
-            padding: 20px;
-        }
-
+        /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
+            .hero h1 { font-size: 2.5rem; }
+            nav { flex-direction: column; }
+            .nav-links { margin-top: 20px; }
+            .nav-links li { margin: 0 10px; }
         }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="#intro">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <nav>
+        <div class="logo">LUMINA <span>PICTURES</span></div>
+        <ul class="nav-links">
+            <li><a href="#">The Slate</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
 
-<header>
-    <div>
-        <h1>EcoStudio</h1>
-        <p>Cinematic Experience with a Sustainable Touch</p>
-    </div>
-</header>
+    <header class="hero">
+        <h1>Stories That Echo</h1>
+        <p>Independent spirit. Global vision. Producing the next generation of feature films and documentaries.</p>
+        <br>
+        <a href="#" class="btn">Watch 2025 Sizzle Reel</a>
+    </header>
 
-<section id="intro">
-    <h2>Welcome to EcoStudio</h2>
-    <p>We craft visually stunning, eco-friendly cinematic experiences, blending creativity with sustainability.</p>
-</section>
-
-<section id="services">
-    <h2>Our Services</h2>
-    <div class="grid-container">
-        <div class="service-card">
-            <img src="https://support.musicgateway.com/wp-content/uploads/2021/04/stages-of-film-production.png" alt="Film Production">
-            <h3>Film Production</h3>
-            <p>Eco-friendly production techniques ensuring sustainability in filmmaking.</p>
+    <section class="slate">
+        <h2 class="section-title">Current Productions</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1596727147705-54a9d099308a?q=80&w=1000&auto=format&fit=crop" alt="Sci-Fi Movie">
+                <div class="card-info">
+                    <span class="movie-tag">In Post-Production</span>
+                    <h3 class="movie-title">The Neon Horizon</h3>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e63?q=80&w=1000&auto=format&fit=crop" alt="Drama Movie">
+                <div class="card-info">
+                    <span class="movie-tag">Now Streaming</span>
+                    <h3 class="movie-title">Silence in the Valley</h3>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?q=80&w=1000&auto=format&fit=crop" alt="Action Movie">
+                <div class="card-info">
+                    <span class="movie-tag">Pre-Production</span>
+                    <h3 class="movie-title">Project: Overdrive</h3>
+                </div>
+            </div>
         </div>
-        <div class="service-card">
-            <img src="https://morningannouncement.com/wp-content/uploads/2016/11/Fotolia_47323206_Subscription_Monthly_M.jpg" alt="Cinematography">
-            <h3>Cinematography</h3>
-            <p>High-quality green filming techniques that reduce environmental impact.</p>
-        </div>
-        <div class="service-card">
-            <img src="https://assets-global.website-files.com/5fa0baa5ea5c262586cf8fd0/609423448f31998de22c5c56_Post%20Production%20Workflow%20-%20Feature%20Image%20-%20Wrapbook.jpg" alt="Post-production">
-            <h3>Post-Production</h3>
-            <p>Eco-conscious editing and finishing for visually stunning results.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>For inquiries or collaborations, email us at <a href="mailto:fmaster1141@gmail.com" style="color: #00ff88; text-decoration: none;">fmaster1141@gmail.com</a></p>
-</section>
-
-<footer>
-    <p>&copy; 2025 EcoStudio. All Rights Reserved.</p>
-</footer>
+    <footer>
+        <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">Vimeo</a>
+            <a href="#">IMDb Pro</a>
+            <a href="#">LinkedIn</a>
+        </div>
+        <p class="copyright">&copy; 2025 Lumina Pictures LLC. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
