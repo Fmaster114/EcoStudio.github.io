@@ -3,306 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoStudios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-    
+    <title>EcoStudios | Official Site</title>
     <style>
-        /* --- PREMIUM THEME SETTINGS --- */
-        :root {
-            --bg-color: #050505;        /* True Black */
-            --panel-color: #121212;     /* Dark Grey for cards/forms */
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --gold-accent: #D4AF37;     /* Metallic Gold */
-            --border-color: #333333;
-        }
-
+        /* --- MAIN SETTINGS --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: Arial, sans-serif;
+            background-color: #000000; /* Black background */
+            color: #ffffff;            /* White text */
             line-height: 1.6;
-            overflow-x: hidden;
         }
-
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
         /* --- NAVIGATION --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
-            background-color: rgba(5, 5, 5, 0.95);
-            border-bottom: 1px solid var(--border-color);
+            padding: 20px 5%;
+            background: #111111;
+            border-bottom: 1px solid #333;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 10;
         }
 
-        .logo { 
-            font-size: 1.5rem; 
-            font-weight: 700; 
-            letter-spacing: 2px; 
-            text-transform: uppercase;
-            color: white; 
-        }
-        
-        .nav-tabs button {
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+
+        .nav-links button {
             background: none;
             border: none;
-            color: var(--text-muted);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            margin-left: 35px;
+            color: #888;
+            margin-left: 20px;
             cursor: pointer;
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
         }
 
-        .nav-tabs button:hover, .nav-tabs button.active {
-            color: var(--gold-accent);
+        .nav-links button.active, .nav-links button:hover {
+            color: #ffffff;
+            font-weight: bold;
         }
 
-        /* --- TAB LOGIC --- */
+        /* --- TABS SYSTEM --- */
         .tab-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.6s ease-in;
-            min-height: 85vh;
-        }
-        .tab-content.active-view {
-            display: block;
-            opacity: 1;
+            display: none; /* Hide pages by default */
+            padding: 100px 5%;
+            text-align: center;
+            min-height: 80vh;
         }
 
-        /* --- TAB 1: HERO --- */
-        .hero {
-            height: 85vh;
-            /* Abstract Cinematic Background */
-            background: radial-gradient(circle at center, rgba(20,20,20,0.5), #050505 90%), url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2000&auto=format&fit=crop');
+        .active-tab {
+            display: block; /* Show the active page */
+        }
+
+        /* --- HOME PAGE --- */
+        #home {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1478720568477-152d9b164e63?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
         }
 
-        .est-date {
-            color: var(--gold-accent);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            border: 1px solid var(--gold-accent);
-            padding: 5px 15px;
+        .since-date {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        h1 { font-size: 50px; margin-bottom: 20px; }
+        
+        /* --- PROJECTS PAGE --- */
+        .status-box {
+            border: 1px solid #444;
+            padding: 40px;
             display: inline-block;
-        }
-
-        .hero h1 { 
-            font-size: 4.5rem; 
-            margin-bottom: 10px; 
-            line-height: 1.1; 
-            letter-spacing: -1px;
-        }
-        
-        .hero p { 
-            font-size: 1.1rem; 
-            max-width: 600px; 
-            color: var(--text-muted); 
-            margin-top: 20px;
-            font-weight: 300;
-        }
-
-        /* --- TAB 2: SLATE (No Active Projects) --- */
-        .slate-wrapper {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(45deg, #050505, #111);
-        }
-        
-        .lock-icon { font-size: 3rem; color: var(--gold-accent); margin-bottom: 20px; opacity: 0.8; }
-        .slate-wrapper h2 { font-size: 2.5rem; color: #fff; margin-bottom: 10px; }
-        .slate-wrapper p { color: var(--text-muted); max-width: 500px; }
-
-        /* --- TAB 3: CONTACT & SOCIALS --- */
-        .container { padding: 80px 50px; max-width: 1000px; margin: 0 auto; }
-        
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
             margin-top: 50px;
         }
 
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            transition: 0.3s;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold-accent);
+        /* --- CONTACT PAGE --- */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: left;
         }
 
-        .submit-btn {
-            padding: 15px 40px;
+        .contact-box { margin: 20px; min-width: 250px; }
+
+        .social-link {
+            display: block;
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .social-link:hover { background: #444; }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #222;
+            border: 1px solid #444;
+            color: white;
+        }
+
+        button.send-btn {
             background: white;
             color: black;
             border: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            padding: 10px 20px;
+            margin-top: 10px;
             cursor: pointer;
-            transition: 0.3s;
-        }
-        .submit-btn:hover { background: var(--gold-accent); }
-
-        .social-links { margin-top: 20px; }
-        .social-btn {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: 0.3s;
-        }
-        .social-btn:hover {
-            border-color: var(--gold-accent);
-            background: rgba(212, 175, 55, 0.05);
-        }
-        .social-icon { margin-right: 15px; font-size: 1.2rem; }
-
-        /* --- MOBILE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; padding: 20px; }
-            .nav-tabs { margin-top: 20px; }
-            .nav-tabs button { margin: 0 10px; margin-bottom: 10px; margin-left: 0; }
-            .contact-layout { grid-template-columns: 1fr; }
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">EcoStudios</div>
-        <div class="nav-tabs">
-            <button class="tab-link active" onclick="openTab('home', this)">Studio</button>
-            <button class="tab-link" onclick="openTab('slate', this)">The Slate</button>
-            <button class="tab-link" onclick="openTab('contact', this)">Contact</button>
+        <div class="logo">ECOSTUDIOS</div>
+        <div class="nav-links">
+            <button onclick="showPage('home')" id="btn-home" class="active">Home</button>
+            <button onclick="showPage('projects')" id="btn-projects">Projects</button>
+            <button onclick="showPage('contact')" id="btn-contact">Contact</button>
         </div>
     </nav>
 
-    <div id="home" class="tab-content active-view">
-        <header class="hero">
-            <div class="est-date">Since June 6th 2024</div>
-            <h1>Visual Excellence.</h1>
-            <p>EcoStudios is a modern production house dedicated to high-fidelity storytelling and digital artistry.</p>
-        </header>
+    <div id="home" class="tab-content active-tab">
+        <p class="since-date">SINCE JUNE 6TH 2024</p>
+        <h1>EcoStudios</h1>
+        <p>A professional movie studio focused on high-quality visual production.</p>
     </div>
 
-    <div id="slate" class="tab-content">
-        <div class="slate-wrapper">
-            <div class="lock-icon">🔒</div>
-            <h2>In Development</h2>
-            <p>Our upcoming slate of projects is currently confidential. Please check back for official press releases and casting calls.</p>
+    <div id="projects" class="tab-content">
+        <h2>The Slate</h2>
+        <div class="status-box">
+            <h3>Current Status: In Development</h3>
+            <p style="color: #888; margin-top: 10px;">We are currently working on our upcoming projects behind the scenes.<br>Check back soon for official announcements.</p>
         </div>
     </div>
 
     <div id="contact" class="tab-content">
-        <div class="container">
-            <h2 style="font-size: 3rem; margin-bottom: 10px;">Connect</h2>
-            <p style="color: var(--text-muted);">For business inquiries, distribution, and talent management.</p>
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-box">
+                <h3>Follow Us</h3>
+                <br>
+                <a href="https://www.youtube.com/@ecostudiosofficial" target="_blank" class="social-link">YouTube</a>
+                <a href="https://www.instagram.com/ecostudiosofficial/" target="_blank" class="social-link">Instagram</a>
+            </div>
 
-            <div class="contact-layout">
-                <div>
-                    <form>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email">
-                        </div>
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea rows="5"></textarea>
-                        </div>
-                        <button type="button" class="submit-btn">Send Inquiry</button>
-                    </form>
-                </div>
-
-                <div>
-                    <h3 style="margin-bottom: 25px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 2px;">Social Platforms</h3>
-                    
-                    <a href="https://www.youtube.com/@ecostudiosofficial" target="_blank" class="social-btn">
-                        <span class="social-icon">▶</span>
-                        <div>
-                            <strong>YouTube</strong><br>
-                            <span style="font-size: 0.8rem; color: #888;">@ecostudiosofficial</span>
-                        </div>
-                    </a>
-
-                    <a href="https://www.instagram.com/ecostudiosofficial/" target="_blank" class="social-btn">
-                        <span class="social-icon">📷</span>
-                        <div>
-                            <strong>Instagram</strong><br>
-                            <span style="font-size: 0.8rem; color: #888;">@ecostudiosofficial</span>
-                        </div>
-                    </a>
-                </div>
+            <div class="contact-box">
+                <h3>Send an Inquiry</h3>
+                <form>
+                    <input type="text" placeholder="Your Name">
+                    <input type="email" placeholder="Your Email">
+                    <textarea placeholder="Your Message" rows="4"></textarea>
+                    <button type="button" class="send-btn">Send Message</button>
+                </form>
             </div>
         </div>
     </div>
 
     <script>
-        function openTab(tabName, btnElement) {
-            // Hide all tabs
-            var contents = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove("active-view");
-                contents[i].style.display = "none"; // Hard reset for display
+        // This function switches between the pages
+        function showPage(pageId) {
+            // 1. Hide all pages
+            var pages = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active-tab');
             }
 
-            // Remove active class from buttons
-            var buttons = document.getElementsByClassName("tab-link");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].classList.remove("active");
-            }
+            // 2. Show the page you clicked
+            document.getElementById(pageId).classList.add('active-tab');
 
-            // Show clicked tab
-            var activeTab = document.getElementById(tabName);
-            activeTab.style.display = "block";
-            // Small timeout to allow the display:block to apply before opacity fade-in
-            setTimeout(() => {
-                activeTab.classList.add("active-view");
-            }, 10);
-
-            btnElement.classList.add("active");
+            // 3. Make the nav buttons look active/inactive
+            var buttons = document.querySelectorAll('.nav-links button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + pageId).classList.add('active');
         }
-        
-        // Initialize first tab correctly
-        document.getElementById('home').style.display = 'flex'; // Use flex for hero alignment
     </script>
 
 </body>
